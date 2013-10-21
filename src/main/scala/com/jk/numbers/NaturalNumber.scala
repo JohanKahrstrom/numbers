@@ -20,6 +20,17 @@ trait NaturalNumber {
   override def toString = this.toInt.toString
 }
 
+object NaturalNumber {
+  def apply(n: Int): NaturalNumber = {
+    def loop(k: Int, acc: NaturalNumber): NaturalNumber =
+      if (k == 0) acc
+      else loop(k - 1, acc.successor)
+    
+    if (n < 0) throw new Exception("Natural number must be positive")
+    else loop(n, Zero)
+  }
+}
+
 case object Zero extends NaturalNumber {
   def + (that: NaturalNumber) = that
   def - (that: NaturalNumber) = that match {

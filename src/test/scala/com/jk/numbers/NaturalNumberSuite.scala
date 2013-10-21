@@ -8,12 +8,12 @@ import org.scalatest.FunSuite
 @RunWith(classOf[JUnitRunner])
 class NaturalNumberSuite extends FunSuite {
   trait TestNumbers {
-    val zero = Zero
-    val one = zero.successor
-    val two = one.successor
-    val three = two.successor
-    val five = three.successor.successor
-    val ten = zero.successor.successor.successor.successor.successor.successor.successor.successor.successor.successor
+    val zero = NaturalNumber(0)
+    val one = NaturalNumber(1)
+    val two = NaturalNumber(2)
+    val three = NaturalNumber(3)
+    val five = NaturalNumber(5)
+    val ten = NaturalNumber(10)
   }
   
   test("successor") {
