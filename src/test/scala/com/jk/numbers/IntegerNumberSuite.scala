@@ -6,22 +6,18 @@ import org.scalatest.junit.JUnitRunner
 import org.scalatest.FunSuite
 
 @RunWith(classOf[JUnitRunner])
-class NaturalNumberSuite extends FunSuite {
+class IntegerNumberSuite extends FunSuite {
   trait TestNumbers {
-    val zero = NaturalNumber(0)
-    val one = NaturalNumber(1)
-    val two = NaturalNumber(2)
-    val three = NaturalNumber(3)
-    val five = NaturalNumber(5)
-    val ten = NaturalNumber(10)
-  }
-  
-  test("successor") {
-    new TestNumbers {
-      assert(Zero.successor == one)
-      assert(Zero.successor.successor == two)
-      assert(three.successor.successor == five)
-    }
+    val zero = IntegerNumber(0)
+    val one = IntegerNumber(1)
+    val two = IntegerNumber(2)
+    val three = IntegerNumber(3)
+    val five = IntegerNumber(5)
+    val nine = IntegerNumber(9)
+    val ten = IntegerNumber(10)
+    val minusOne = IntegerNumber(-1)
+    val minusThree = IntegerNumber(-3)
+    val minusFifteen = IntegerNumber(-15)
   }
   
   test("addition") {
@@ -31,16 +27,21 @@ class NaturalNumberSuite extends FunSuite {
       assert(five + zero == five)
       assert(five + two != five)
       assert(five + five == ten)
+      assert(one + minusOne == zero)
+      assert(one - minusOne == two)
+      assert(minusOne + minusOne + minusOne == minusThree)
     }
   }
   
   test("multiplication") {
     new TestNumbers {
-      assert(zero * one == Zero)
+      assert(zero * one == zero)
       assert(one * five == five)
       assert(five * zero != five)
       assert(five * two == two * five)
       assert(five * two == ten)
+      assert(minusOne * minusOne == one)
+      assert(five * minusThree == minusFifteen)
     }
   }
   
@@ -49,22 +50,6 @@ class NaturalNumberSuite extends FunSuite {
       assert(ten / five == two)
       assert(ten / three == three)
       assert(ten / two == five)
-    }
-  }
-  
-  test("modulus") {
-    new TestNumbers {
-      assert(ten % five == zero)
-      assert(ten % three == one)
-      assert(five % three == two)
-    }
-  }
-  
-  test("gcd") {
-    new TestNumbers {
-      assert((ten gcd five) == five)
-      assert((five gcd ten) == five)
-      assert(((two * three) gcd (three * five)) == three)
     }
   }
   

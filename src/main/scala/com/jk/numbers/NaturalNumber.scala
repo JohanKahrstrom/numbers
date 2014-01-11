@@ -15,6 +15,10 @@ trait NaturalNumber {
   
   def max(that: NaturalNumber) = if (this < that) that else this
   def min(that: NaturalNumber) = if (this < that) this else that
+  def gcd(that: NaturalNumber): NaturalNumber = that match {
+    case Zero => this
+    case _ => that gcd (this % that)
+  }
   
   def toInt: Int
   override def toString = this.toInt.toString

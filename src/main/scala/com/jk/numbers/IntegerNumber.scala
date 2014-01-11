@@ -1,13 +1,13 @@
 package com.jk.numbers
 
 class IntegerNumber(a: NaturalNumber, b: NaturalNumber) {
+  def this(a: NaturalNumber) = this(a, Zero)
+  
   private val m = a min b
   
   // Either pos or neg is Zero
   val pos = a - m
   val neg = b - m
-  
-  def this(a: NaturalNumber) = this(a, Zero)
   
   def abs = pos max neg
   
@@ -38,4 +38,11 @@ class IntegerNumber(a: NaturalNumber, b: NaturalNumber) {
   
   def toInt = if (pos < neg) -(neg - pos).toInt else (pos - neg).toInt
   override def toString = this.toInt.toString
+}
+
+object IntegerNumber {
+  def apply(n: Int): IntegerNumber = {
+    if (n < 0) new IntegerNumber(Zero, NaturalNumber(-n))
+    else new IntegerNumber(NaturalNumber(n), Zero)
+  }
 }
